@@ -1,0 +1,15 @@
+main.cpp: In function ‘int main()’:
+main.cpp:91:9: error: not enough for loops to collapse
+   91 |         const auto& [word, expected_result] = queries[i];
+      |         ^~~~~
+main.cpp:91:55: error: ‘i’ was not declared in this scope
+   91 |         const auto& [word, expected_result] = queries[i];
+      |                                                       ^
+function/BloomFilter.cpp: In member function ‘std::vector<std::vector<std::vector<unsigned int> > > BloomFilter::precomputeAllHashValues(const std::vector<std::vector<std::__cxx11::basic_string<char> > >&)’:
+function/BloomFilter.cpp:52:13: error: not enough for loops to collapse
+   52 |     #pragma omp critical
+      |             ^~~
+function/BloomFilter.cpp:54:23: error: ‘i’ was not declared in this scope
+   54 |         allHashValues[i].resize(ppWordListArray[i].size(), std::vector<uint32_t>(k));
+      |                       ^
+/cm/local/apps/slurm/var/spool/job06692/slurm_script: line 21: ./omp: No such file or directory

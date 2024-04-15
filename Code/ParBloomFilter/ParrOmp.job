@@ -1,0 +1,23 @@
+#!/bin/bash
+#SBATCH --job-name=omp_job   ### name your job 
+#SBATCH --time=00:10:00      ### hh:mm:ss or dd-hh:mm:ss
+#SBATCH --mem=16G            ### memory setting is max @ 2 GB per core
+#SBATCH --ntasks=1           ### launch one process
+#SBATCH --cpus-per-task=16   ### multi-threaded processes
+#SBATCH --output=mpi.%j.out
+#SBATCH --partition=defq
+
+if [ ! -f omp ]
+then
+ g++ main.cpp function/UniqueWordsParr.cpp function/hash.cpp function/BloomFilter.cpp -fopenmp -Wall -Wextra -o omp
+else
+ if [ main.cpp -nt omp ]
+ then
+  g++ main.cpp function/UniqueWordsParr.cpp function/hash.cpp function/BloomFilter.cpp -fopenmp -Wall -Wextra -o omp
+ fi
+fi
+
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+./omp
+
+exit 0
